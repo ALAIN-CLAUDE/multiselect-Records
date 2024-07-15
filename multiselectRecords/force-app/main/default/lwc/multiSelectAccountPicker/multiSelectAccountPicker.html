@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Multirecord Picker" icon-name="standard:account">
+        <div class="slds-p-horizontal_medium slds-p-vertical_small">
+            <div class="slds-col slds-size_8-of-12 slds-p-left_small">
+                <lightning-record-picker 
+                    lwc:ref="picker" 
+                    label="Select an account" 
+                    placeholder="Search for accounts"
+                    object-api-name="Account"
+                    display-info={recordPickerDisplayInfo}
+                    matching-info={recordPickerMatchingInfo}
+                    onchange={handleChange}
+                    variant="label-hidden">
+                </lightning-record-picker>
+                <div>
+                    <template for:each={selectedAccounts} for:item="selectedItem">
+                        <lightning-pill
+                            key={selectedItem.value}
+                            label={selectedItem.label} 
+                            name={selectedItem.value}
+                            class="selected-item slds-m-top_xx-small slds-m-right_xx-small"
+                            data-item={selectedItem.value} 
+                            onremove={handleRemoveRecord}>
+
+                            <lightning-icon 
+                                icon-name={selectedItem.icon} 
+                                variant="circle" 
+                                alternative-text={selectedItem.label}>
+                            </lightning-icon>
+
+                        </lightning-pill>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
